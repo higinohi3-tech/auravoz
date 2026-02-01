@@ -19,160 +19,158 @@ const Pricing: React.FC = () => {
   };
 
   return (
-    <div className="py-24 bg-white">
+    <div className="py-24 bg-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Planos AuraVoz</h2>
-          <p className="mt-4 text-lg text-gray-600">Escolha o nível de excelência que você merece.</p>
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Planos AuraVoz</h2>
+          <p className="text-lg text-zinc-400">Escolha o nível de acesso que combina com o seu talento.</p>
         </div>
 
         {/* Toggle Mensal/Anual */}
-        <div className="flex justify-center items-center gap-4 mb-16">
-          <span className={`text-sm font-bold ${!isAnnual ? 'text-violet-600' : 'text-gray-400'}`}>Mensal</span>
+        <div className="flex justify-center items-center gap-5 mb-20">
+          <span className={`text-sm font-bold ${!isAnnual ? 'text-violet-400' : 'text-zinc-600'}`}>MENSAL</span>
           <button 
             onClick={() => setIsAnnual(!isAnnual)}
-            className="w-16 h-8 bg-gray-200 rounded-full relative p-1 transition-colors focus:outline-none"
+            className="w-16 h-8 bg-zinc-800 rounded-full relative p-1 transition-colors focus:outline-none border border-zinc-700"
           >
             <div className={`w-6 h-6 bg-violet-600 rounded-full shadow-md transform transition-transform ${isAnnual ? 'translate-x-8' : 'translate-x-0'}`}></div>
           </button>
           <div className="flex items-center gap-2">
-            <span className={`text-sm font-bold ${isAnnual ? 'text-violet-600' : 'text-gray-400'}`}>Anual</span>
-            <span className="bg-emerald-100 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">
-              1 Mês Oferta
+            <span className={`text-sm font-bold ${isAnnual ? 'text-violet-400' : 'text-zinc-600'}`}>ANUAL</span>
+            <span className="bg-emerald-600/20 text-emerald-400 text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-widest border border-emerald-500/20">
+              -1 Mês
             </span>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-          {/* Plan 1 - Iniciante */}
-          <div className="bg-white border border-gray-200 rounded-3xl p-8 flex flex-col hover:border-violet-300 transition-colors shadow-sm">
-            <h3 className="text-xl font-bold text-gray-900 mb-2">Discovery</h3>
-            <div className="mb-6">
-              <span className="text-4xl font-extrabold text-gray-900">Grátis</span>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+          {/* Plan 1 - Discovery */}
+          <div className="bg-zinc-900/40 border border-zinc-800 rounded-[2.5rem] p-10 flex flex-col hover:border-violet-500/30 transition-all hover:bg-zinc-900">
+            <h3 className="text-xl font-bold text-zinc-300 mb-2">Discovery</h3>
+            <div className="mb-8">
+              <span className="text-4xl font-black text-white">Grátis</span>
             </div>
-            <ul className="space-y-4 mb-10 flex-grow">
-              <li className="flex items-center text-gray-600">
-                <i className="fa-solid fa-check text-emerald-500 mr-2"></i>
-                Uso Básico Diário
+            <ul className="space-y-4 mb-12 flex-grow">
+              <li className="flex items-center text-zinc-400 text-sm">
+                <i className="fa-solid fa-check text-emerald-500 mr-3"></i>
+                Narrações Diárias Limitadas
               </li>
-              <li className="flex items-center text-gray-600">
-                <i className="fa-solid fa-check text-emerald-500 mr-2"></i>
-                Vozes Padrão
+              <li className="flex items-center text-zinc-400 text-sm">
+                <i className="fa-solid fa-check text-emerald-500 mr-3"></i>
+                Vozes Padrão de Angola
               </li>
-              <li className="flex items-center text-gray-400">
-                <i className="fa-solid fa-xmark mr-3"></i>
-                Clonagem Premium
+              <li className="flex items-center text-zinc-600 text-sm italic">
+                <i className="fa-solid fa-lock mr-3 opacity-50"></i>
+                Clonagem de Voz
               </li>
             </ul>
-            <button className="w-full py-3 px-6 rounded-xl border border-gray-300 text-gray-600 font-bold hover:bg-gray-50 transition-colors">
-              Explorar
+            <button className="w-full py-4 rounded-2xl border border-zinc-700 text-zinc-400 font-bold hover:bg-zinc-800 transition-colors">
+              Explorar Agora
             </button>
           </div>
 
-          {/* Plan 2 - Pro */}
-          <div className="bg-violet-600 rounded-3xl p-8 flex flex-col text-white shadow-xl scale-105 relative">
-            <div className="absolute top-0 right-8 -translate-y-1/2 bg-cyan-400 text-violet-900 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">
-              Recomendado
+          {/* Plan 2 - Elite Pro */}
+          <div className="bg-gradient-to-br from-violet-600 to-indigo-700 rounded-[2.5rem] p-10 flex flex-col text-white shadow-2xl scale-105 relative z-10 overflow-hidden">
+            <div className="absolute top-0 right-10 bg-cyan-400 text-violet-950 text-[10px] font-black px-4 py-1.5 rounded-b-xl uppercase tracking-widest">
+              POPULAR
             </div>
             <h3 className="text-xl font-bold mb-2">Elite Pro</h3>
-            <div className="mb-6">
-              <span className="text-4xl font-extrabold">
+            <div className="mb-8">
+              <span className="text-4xl font-black">
                 {isAnnual ? formatKz(annualPro) : formatKz(monthlyPro)}
               </span>
-              <span className="text-violet-100 ml-2 text-sm">{isAnnual ? '/ ano' : '/ mês'}</span>
+              <span className="text-violet-200 ml-2 text-sm">{isAnnual ? '/ ano' : '/ mês'}</span>
             </div>
-            <ul className="space-y-4 mb-10 flex-grow">
-              <li className="flex items-center">
-                <i className="fa-solid fa-check text-cyan-200 mr-2"></i>
-                Vozes com Alma (Emoções)
+            <ul className="space-y-4 mb-12 flex-grow">
+              <li className="flex items-center text-sm font-medium">
+                <i className="fa-solid fa-check text-cyan-300 mr-3"></i>
+                Vozes com Emoção Real
               </li>
-              <li className="flex items-center">
-                <i className="fa-solid fa-check text-cyan-200 mr-2"></i>
-                Dialetos Africanos Completos
+              <li className="flex items-center text-sm font-medium">
+                <i className="fa-solid fa-check text-cyan-300 mr-3"></i>
+                Línguas Nacionais Completas
               </li>
-              <li className="flex items-center">
-                <i className="fa-solid fa-check text-cyan-200 mr-2"></i>
-                Prioridade no Processamento
+              <li className="flex items-center text-sm font-medium">
+                <i className="fa-solid fa-check text-cyan-300 mr-3"></i>
+                Processamento Ultra-Rápido
               </li>
             </ul>
-            <button className="w-full py-3 px-6 rounded-xl bg-white text-violet-600 font-bold hover:bg-gray-50 transition-colors shadow-lg">
-              Elevar Minha Voz
+            <button className="w-full py-4 rounded-2xl bg-white text-violet-700 font-bold hover:bg-zinc-100 transition-all shadow-xl active:scale-95">
+              Assinar Plano Elite
             </button>
           </div>
 
-          {/* Plan 3 - Enterprise */}
-          <div className="bg-white border border-gray-200 rounded-3xl p-8 flex flex-col hover:border-violet-300 transition-colors shadow-sm">
-            <h3 className="text-xl font-bold text-gray-900 mb-2">Corporativo</h3>
-            <div className="mb-6">
-              <span className="text-4xl font-extrabold text-gray-900">
+          {/* Plan 3 - Corporate */}
+          <div className="bg-zinc-900/40 border border-zinc-800 rounded-[2.5rem] p-10 flex flex-col hover:border-violet-500/30 transition-all hover:bg-zinc-900">
+            <h3 className="text-xl font-bold text-zinc-300 mb-2">Corporate</h3>
+            <div className="mb-8">
+              <span className="text-4xl font-black text-white">
                 {isAnnual ? formatKz(annualEnterprise) : formatKz(monthlyEnterprise)}
               </span>
-              <span className="text-gray-500 ml-2 text-sm">{isAnnual ? '/ ano' : '/ mês'}</span>
+              <span className="text-zinc-500 ml-2 text-sm">{isAnnual ? '/ ano' : '/ mês'}</span>
             </div>
-            <ul className="space-y-4 mb-10 flex-grow">
-              <li className="flex items-center text-gray-600">
-                <i className="fa-solid fa-check text-emerald-500 mr-2"></i>
+            <ul className="space-y-4 mb-12 flex-grow">
+              <li className="flex items-center text-zinc-400 text-sm">
+                <i className="fa-solid fa-check text-emerald-500 mr-3"></i>
                 Clonagem Empresarial
               </li>
-              <li className="flex items-center text-gray-600">
-                <i className="fa-solid fa-check text-emerald-500 mr-2"></i>
-                API de Integração Direta
+              <li className="flex items-center text-zinc-400 text-sm">
+                <i className="fa-solid fa-check text-emerald-500 mr-3"></i>
+                API de Voz Nativa
               </li>
-              <li className="flex items-center text-gray-600">
-                <i className="fa-solid fa-check text-emerald-500 mr-2"></i>
-                Suporte 24/7 Dedicado
+              <li className="flex items-center text-zinc-400 text-sm">
+                <i className="fa-solid fa-check text-emerald-500 mr-3"></i>
+                Atendimento por Voz IA 24h
               </li>
             </ul>
-            <button className="w-full py-3 px-6 rounded-xl border border-violet-600 text-violet-600 font-bold hover:bg-violet-50 transition-colors">
-              Negociar
+            <button className="w-full py-4 rounded-2xl border border-violet-500/40 text-violet-400 font-bold hover:bg-violet-500/10 transition-colors">
+              Falar com Vendas
             </button>
           </div>
         </div>
 
-        {/* Unified Payment Info Section */}
-        <div className="bg-slate-900 rounded-[2.5rem] p-8 md:p-12 text-white shadow-2xl relative overflow-hidden">
-          <div className="absolute top-0 right-0 p-10 opacity-10 pointer-events-none">
-            <i className="fa-solid fa-waveform text-[120px]"></i>
+        {/* Payment Detail Section */}
+        <div className="bg-zinc-950 rounded-[3rem] p-10 md:p-16 border border-zinc-900 shadow-2xl relative overflow-hidden">
+          <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none">
+            <i className="fa-solid fa-building-columns text-[150px]"></i>
           </div>
           
-          <div className="relative z-10">
-            <div className="flex flex-col md:flex-row justify-between items-center gap-8">
-              <div className="max-w-md text-center md:text-left">
-                <span className="bg-violet-500/20 text-violet-300 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-4 inline-block">
-                  Pagamento Seguro
-                </span>
-                <h3 className="text-2xl font-bold mb-4">Ativação Instantânea</h3>
-                <p className="text-slate-400 mb-6">
-                  Envie o valor correspondente para a conta central e tenha seu acesso liberado em minutos após o comprovativo.
+          <div className="relative z-10 flex flex-col md:flex-row justify-between items-center gap-12">
+            <div className="max-w-xl text-center md:text-left">
+              <span className="bg-violet-600/20 text-violet-400 text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-widest mb-6 inline-block border border-violet-500/20">
+                PROCESSO DE ATIVAÇÃO
+              </span>
+              <h3 className="text-3xl font-bold mb-6 text-white">Sua assinatura ativa em minutos.</h3>
+              <p className="text-zinc-400 mb-8 leading-relaxed">
+                A AuraVoz processa ativações manualmente via transferência. Garanta seu acesso enviando o comprovativo pelo nosso canal oficial no WhatsApp.
+              </p>
+              <div className="bg-zinc-900 border border-zinc-800 rounded-[2rem] p-8 shadow-inner">
+                <p className="text-zinc-500 text-[10px] uppercase font-bold tracking-widest mb-2">IBAN AuraVoz (Angola)</p>
+                <p className="text-2xl md:text-3xl font-mono text-violet-400 font-bold select-all tracking-tighter">
+                  {accountNum}
                 </p>
-                <div className="bg-white/5 border border-white/10 rounded-2xl p-6 mb-6">
-                  <p className="text-slate-500 text-xs uppercase font-bold tracking-widest mb-2">Número da Conta AuraVoz</p>
-                  <p className="text-2xl md:text-3xl font-mono text-violet-400 font-bold tracking-tighter select-all">
-                    {accountNum}
-                  </p>
-                </div>
               </div>
+            </div>
 
-              <div className="flex flex-col gap-4 w-full md:w-auto">
-                <div className="bg-white/5 border border-white/10 p-5 rounded-2xl flex items-center gap-4">
-                  <div className="w-12 h-12 bg-violet-600 rounded-xl flex items-center justify-center text-xl">
-                    <i className="fa-solid fa-credit-card"></i>
-                  </div>
-                  <div>
-                    <p className="font-bold">Multicaixa / Express</p>
-                    <p className="text-xs text-slate-400">Atendimento via WhatsApp Angola</p>
-                  </div>
+            <div className="flex flex-col gap-5 w-full md:w-auto">
+              <div className="bg-zinc-900 border border-zinc-800 p-6 rounded-3xl flex items-center gap-5">
+                <div className="w-14 h-14 bg-violet-600/10 border border-violet-500/20 rounded-2xl flex items-center justify-center text-xl text-violet-400">
+                  <i className="fa-solid fa-receipt"></i>
                 </div>
-                <a 
-                  href={`https://wa.me/${whatsappNum}?text=Olá AuraVoz, enviei o pagamento para ${accountNum}.`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-4 px-6 rounded-2xl flex items-center justify-center gap-3 transition-all shadow-lg shadow-emerald-900/20"
-                >
-                  <i className="fa-brands fa-whatsapp text-xl"></i>
-                  Enviar Comprovativo
-                </a>
+                <div>
+                  <p className="font-bold text-white">Multicaixa Express</p>
+                  <p className="text-xs text-zinc-500">Forma preferencial p/ Angola</p>
+                </div>
               </div>
+              <a 
+                href={`https://wa.me/${whatsappNum}?text=Oi AuraVoz, fiz o pagamento para ${accountNum}.`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-5 px-10 rounded-3xl flex items-center justify-center gap-3 transition-all shadow-xl shadow-emerald-900/30 active:scale-95"
+              >
+                <i className="fa-brands fa-whatsapp text-2xl"></i>
+                ENVIAR COMPROVATIVO
+              </a>
             </div>
           </div>
         </div>

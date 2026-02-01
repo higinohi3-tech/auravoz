@@ -1,5 +1,5 @@
 
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { generateTTS, playAudioBuffer } from '../services/geminiService';
 import { EMOTIONS, LANGUAGES, VOICE_TYPES, GENDERS } from '../constants';
 import { VoiceGender, AppSection } from '../types';
@@ -15,7 +15,6 @@ const Studio: React.FC<StudioProps> = ({ onSwitchSection }) => {
   const [language, setLanguage] = useState('Português (Angola)');
   const [voiceType, setVoiceType] = useState('Normal');
   const [isGenerating, setIsGenerating] = useState(false);
-  const [lastAudio, setLastAudio] = useState<AudioBuffer | null>(null);
   const [name, setName] = useState('');
   const accountNum = "4220360093643975";
 
@@ -33,46 +32,31 @@ const Studio: React.FC<StudioProps> = ({ onSwitchSection }) => {
     
     const buffer = await generateTTS(processedText, instruction, voiceName);
     if (buffer) {
-      setLastAudio(buffer);
       playAudioBuffer(buffer);
     }
     setIsGenerating(false);
   };
 
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        const content = event.target?.result;
-        if (typeof content === 'string') {
-          setText(content);
-        }
-      };
-      reader.readAsText(file);
-    }
-  };
-
   return (
-    <div className="py-12 max-w-5xl mx-auto px-4">
-      <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100 mb-8">
+    <div className="py-12 max-w-6xl mx-auto px-4">
+      <div className="bg-zinc-900 rounded-[2.5rem] shadow-2xl overflow-hidden border border-zinc-800 mb-8">
         <div className="md:flex">
-          {/* Controls */}
-          <div className="w-full md:w-1/3 bg-gray-50 p-8 border-r border-gray-200">
-            <h2 className="text-xl font-bold mb-6 flex items-center">
-              <i className="fa-solid fa-sliders mr-2 text-violet-600"></i>
+          {/* Controls Sidebar */}
+          <div className="w-full md:w-1/3 bg-zinc-950 p-10 border-r border-zinc-800">
+            <h2 className="text-xl font-bold mb-8 flex items-center text-white">
+              <i className="fa-solid fa-sliders mr-3 text-violet-500"></i>
               Configuração
             </h2>
 
-            <div className="space-y-6">
+            <div className="space-y-8">
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Gênero</label>
-                <div className="flex p-1 bg-white border border-gray-200 rounded-xl">
+                <label className="block text-xs font-bold text-zinc-500 uppercase tracking-widest mb-3">Gênero</label>
+                <div className="flex p-1 bg-zinc-900 border border-zinc-800 rounded-2xl">
                   {GENDERS.map(g => (
                     <button
                       key={g}
                       onClick={() => setGender(g as VoiceGender)}
-                      className={`flex-1 py-2 rounded-lg text-sm font-medium transition-all ${gender === g ? 'bg-violet-600 text-white shadow-md' : 'text-gray-500 hover:text-gray-700'}`}
+                      className={`flex-1 py-2.5 rounded-xl text-sm font-bold transition-all ${gender === g ? 'bg-violet-600 text-white shadow-lg' : 'text-zinc-500 hover:text-zinc-300'}`}
                     >
                       {g}
                     </button>
@@ -81,91 +65,86 @@ const Studio: React.FC<StudioProps> = ({ onSwitchSection }) => {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Emoção</label>
+                <label className="block text-xs font-bold text-zinc-500 uppercase tracking-widest mb-3">Emoção</label>
                 <select 
                   value={emotion}
                   onChange={(e) => setEmotion(e.target.value)}
-                  className="w-full bg-white border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-violet-500 outline-none"
+                  className="w-full bg-zinc-900 border border-zinc-800 rounded-2xl px-5 py-3 text-white focus:ring-2 focus:ring-violet-500 outline-none transition-all"
                 >
                   {EMOTIONS.map(e => <option key={e} value={e}>{e}</option>)}
                 </select>
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Idioma</label>
+                <label className="block text-xs font-bold text-zinc-500 uppercase tracking-widest mb-3">Idioma</label>
                 <select 
                   value={language}
                   onChange={(e) => setLanguage(e.target.value)}
-                  className="w-full bg-white border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-violet-500 outline-none"
+                  className="w-full bg-zinc-900 border border-zinc-800 rounded-2xl px-5 py-3 text-white focus:ring-2 focus:ring-violet-500 outline-none transition-all"
                 >
                   {LANGUAGES.map(l => <option key={l} value={l}>{l}</option>)}
                 </select>
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Estilo</label>
+                <label className="block text-xs font-bold text-zinc-500 uppercase tracking-widest mb-3">Estilo de Voz</label>
                 <select 
                   value={voiceType}
                   onChange={(e) => setVoiceType(e.target.value)}
-                  className="w-full bg-white border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-violet-500 outline-none"
+                  className="w-full bg-zinc-900 border border-zinc-800 rounded-2xl px-5 py-3 text-white focus:ring-2 focus:ring-violet-500 outline-none transition-all"
                 >
                   {VOICE_TYPES.map(v => <option key={v} value={v}>{v}</option>)}
                 </select>
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Personalizar (Nome)</label>
+                <label className="block text-xs font-bold text-zinc-500 uppercase tracking-widest mb-3">Tag Personalizada</label>
                 <input 
                   type="text" 
-                  placeholder="Ex: Ana"
+                  placeholder="Substitui [NOME]"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full bg-white border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-violet-500 outline-none"
+                  className="w-full bg-zinc-900 border border-zinc-800 rounded-2xl px-5 py-3 text-white focus:ring-2 focus:ring-violet-500 outline-none transition-all placeholder:text-zinc-700"
                 />
               </div>
             </div>
           </div>
 
-          {/* Editor */}
-          <div className="w-full md:w-2/3 p-8">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-bold">Estúdio de Narração</h2>
-              <div className="flex gap-2">
+          {/* Editor Area */}
+          <div className="w-full md:w-2/3 p-10 bg-zinc-900">
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-2xl font-bold text-white">Estúdio AuraVoz</h2>
+              <div className="flex gap-3">
                 <button 
                   onClick={() => onSwitchSection?.(AppSection.VISION)}
-                  className="bg-cyan-100 hover:bg-cyan-200 text-cyan-700 px-3 py-1.5 rounded-lg text-sm transition-colors flex items-center font-semibold"
+                  className="bg-cyan-600/10 hover:bg-cyan-600/20 text-cyan-400 px-4 py-2 rounded-xl text-xs font-bold border border-cyan-500/20 transition-all flex items-center"
                 >
                   <i className="fa-solid fa-camera mr-2"></i>
-                  Foto
+                  IMPORTAR FOTO
                 </button>
-                <label className="cursor-pointer bg-gray-100 hover:bg-gray-200 text-gray-600 px-3 py-1.5 rounded-lg text-sm transition-colors flex items-center">
-                  <i className="fa-solid fa-file-import mr-2"></i>
-                  Doc
-                  <input type="file" className="hidden" accept=".txt,.doc,.pdf" onChange={handleFileUpload} />
-                </label>
               </div>
             </div>
             
             <textarea 
-              className="w-full h-64 bg-gray-50 border border-gray-200 rounded-2xl p-6 text-lg focus:ring-2 focus:ring-violet-500 outline-none resize-none mb-6"
-              placeholder="Sua história começa aqui..."
+              className="w-full h-[400px] bg-zinc-950/50 border border-zinc-800 rounded-3xl p-8 text-lg text-zinc-200 focus:ring-2 focus:ring-violet-500 outline-none resize-none mb-8 placeholder:text-zinc-800 shadow-inner"
+              placeholder="Digite ou cole aqui o texto que você deseja transformar em voz com alma..."
               value={text}
               onChange={(e) => setText(e.target.value)}
             />
 
             <div className="flex items-center justify-between">
-              <div className="text-xs text-gray-400">
-                {text.length} caracteres
+              <div className="text-xs font-bold text-zinc-600 uppercase tracking-widest">
+                {text.length} caracteres digitados
               </div>
               <button 
                 onClick={handleGenerate}
                 disabled={isGenerating || !text.trim()}
-                className={`flex items-center gap-3 bg-violet-600 text-white font-bold px-8 py-3 rounded-xl shadow-lg transition-all ${isGenerating || !text.trim() ? 'opacity-50 cursor-not-allowed' : 'hover:bg-violet-700 active:scale-95'}`}
+                className={`flex items-center gap-3 bg-violet-600 text-white font-bold px-10 py-4 rounded-2xl shadow-2xl shadow-violet-500/20 transition-all ${isGenerating || !text.trim() ? 'opacity-30 cursor-not-allowed' : 'hover:bg-violet-700 active:scale-95'}`}
               >
                 {isGenerating ? (
-                  <><i className="fa-solid fa-spinner animate-spin"></i> Criando...</>
+                  <><i className="fa-solid fa-spinner animate-spin"></i> PROCESSANDO...</>
                 ) : (
-                  <><i className="fa-solid fa-play"></i> Dar Voz ao Texto</>
+                  <><i className="fa-solid fa-play"></i> GERAR VOZ AGORA</>
                 )}
               </button>
             </div>
@@ -173,19 +152,19 @@ const Studio: React.FC<StudioProps> = ({ onSwitchSection }) => {
         </div>
       </div>
 
-      <div className="bg-slate-900 text-white rounded-[2rem] p-6 border border-violet-500/20 flex flex-col md:flex-row items-center justify-between gap-6">
-        <div className="flex items-center gap-4">
-          <div className="w-12 h-12 bg-violet-600 rounded-2xl flex items-center justify-center text-xl shadow-lg shadow-violet-500/20">
-            <i className="fa-solid fa-money-bill-transfer"></i>
+      <div className="bg-zinc-950 border border-violet-500/20 rounded-[2rem] p-8 flex flex-col md:flex-row items-center justify-between gap-8">
+        <div className="flex items-center gap-5">
+          <div className="w-16 h-16 bg-violet-600/10 border border-violet-500/20 rounded-2xl flex items-center justify-center text-2xl text-violet-400 shadow-inner">
+            <i className="fa-solid fa-bolt"></i>
           </div>
           <div>
-            <h4 className="font-bold text-lg leading-tight">Créditos AuraVoz</h4>
-            <p className="text-slate-400 text-sm">Recarregue sua conta para narrações ilimitadas.</p>
+            <h4 className="font-bold text-xl text-white">Créditos de Produção</h4>
+            <p className="text-zinc-500">Recarregue para remover o limite de caracteres diários.</p>
           </div>
         </div>
-        <div className="bg-white/5 px-6 py-3 rounded-2xl border border-white/10 text-center">
-          <p className="text-[10px] text-violet-400 uppercase font-bold mb-1 tracking-widest">IBAN de Recarga:</p>
-          <p className="text-xl font-mono font-bold">{accountNum}</p>
+        <div className="bg-black/40 px-8 py-4 rounded-2xl border border-zinc-800 text-center">
+          <p className="text-[10px] text-violet-400 uppercase font-bold mb-1 tracking-[0.2em]">IBAN AuraVoz:</p>
+          <p className="text-2xl font-mono font-bold text-white select-all">{accountNum}</p>
         </div>
       </div>
     </div>

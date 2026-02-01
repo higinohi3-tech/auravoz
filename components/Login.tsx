@@ -23,53 +23,54 @@ const Login: React.FC<LoginProps> = ({ onSuccess }) => {
   };
 
   return (
-    <div className="min-h-[80vh] flex items-center justify-center px-4 py-12 bg-slate-50">
+    <div className="min-h-[80vh] flex items-center justify-center px-4 py-12 bg-black">
       <div className="max-w-md w-full">
-        <div className="bg-white rounded-[2.5rem] shadow-2xl overflow-hidden border border-gray-100">
-          <div className="bg-slate-900 p-10 text-center relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-violet-600/20 blur-3xl rounded-full -mr-16 -mt-16"></div>
-            <div className="absolute bottom-0 left-0 w-24 h-24 bg-fuchsia-600/20 blur-3xl rounded-full -ml-12 -mb-12"></div>
+        <div className="bg-zinc-900 rounded-[3rem] shadow-2xl overflow-hidden border border-zinc-800">
+          <div className="bg-zinc-950 p-12 text-center relative overflow-hidden">
+            {/* Glow effects */}
+            <div className="absolute top-0 right-0 w-32 h-32 bg-violet-600/20 blur-[60px] rounded-full"></div>
+            <div className="absolute bottom-0 left-0 w-24 h-24 bg-fuchsia-600/20 blur-[60px] rounded-full"></div>
             
             <div className="relative z-10">
-              <div className="w-16 h-16 bg-violet-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-violet-500/20">
+              <div className="w-16 h-16 bg-violet-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-xl shadow-violet-500/20">
                 <i className="fa-solid fa-waveform text-white text-2xl"></i>
               </div>
-              <h2 className="text-2xl font-bold text-white mb-2">
+              <h2 className="text-3xl font-bold text-white mb-2 tracking-tight">
                 AuraVoz Account
               </h2>
-              <p className="text-slate-400 text-sm">
-                Entre no futuro da voz artificial
+              <p className="text-zinc-500 text-sm font-medium">
+                O futuro da voz africana começa aqui
               </p>
             </div>
           </div>
 
           <div className="p-10">
-            <div className="flex p-1 bg-gray-100 rounded-xl mb-8">
+            <div className="flex p-1 bg-zinc-950 border border-zinc-800 rounded-2xl mb-10">
               <button 
                 onClick={() => setIsLogin(true)}
-                className={`flex-1 py-2 rounded-lg text-sm font-bold transition-all ${isLogin ? 'bg-white text-violet-600 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
+                className={`flex-1 py-3 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${isLogin ? 'bg-zinc-800 text-violet-400 shadow-lg' : 'text-zinc-600 hover:text-zinc-400'}`}
               >
-                Entrar
+                ENTRAR
               </button>
               <button 
                 onClick={() => setIsLogin(false)}
-                className={`flex-1 py-2 rounded-lg text-sm font-bold transition-all ${!isLogin ? 'bg-white text-violet-600 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
+                className={`flex-1 py-3 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${!isLogin ? 'bg-zinc-800 text-violet-400 shadow-lg' : 'text-zinc-600 hover:text-zinc-400'}`}
               >
-                Cadastro
+                CRIAR CONTA
               </button>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
               {!isLogin && (
                 <div>
-                  <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Nome Completo</label>
+                  <label className="block text-[10px] font-black text-zinc-600 uppercase tracking-[0.2em] mb-3">Nome Completo</label>
                   <div className="relative">
-                    <i className="fa-solid fa-user absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                    <i className="fa-solid fa-user absolute left-5 top-1/2 -translate-y-1/2 text-zinc-600"></i>
                     <input 
                       type="text" 
                       required 
-                      className="w-full pl-12 pr-4 py-3.5 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-violet-500 outline-none transition-all"
-                      placeholder="Seu nome"
+                      className="w-full pl-14 pr-6 py-4 bg-zinc-950 border border-zinc-800 rounded-2xl text-white focus:ring-2 focus:ring-violet-500 outline-none transition-all placeholder:text-zinc-800 shadow-inner"
+                      placeholder="Ex: Manuel dos Santos"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                     />
@@ -78,13 +79,13 @@ const Login: React.FC<LoginProps> = ({ onSuccess }) => {
               )}
 
               <div>
-                <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">E-mail</label>
+                <label className="block text-[10px] font-black text-zinc-600 uppercase tracking-[0.2em] mb-3">E-mail</label>
                 <div className="relative">
-                  <i className="fa-solid fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                  <i className="fa-solid fa-envelope absolute left-5 top-1/2 -translate-y-1/2 text-zinc-600"></i>
                   <input 
                     type="email" 
                     required 
-                    className="w-full pl-12 pr-4 py-3.5 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-violet-500 outline-none transition-all"
+                    className="w-full pl-14 pr-6 py-4 bg-zinc-950 border border-zinc-800 rounded-2xl text-white focus:ring-2 focus:ring-violet-500 outline-none transition-all placeholder:text-zinc-800 shadow-inner"
                     placeholder="seu@email.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -93,13 +94,13 @@ const Login: React.FC<LoginProps> = ({ onSuccess }) => {
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Palavra-passe</label>
+                <label className="block text-[10px] font-black text-zinc-600 uppercase tracking-[0.2em] mb-3">Senha</label>
                 <div className="relative">
-                  <i className="fa-solid fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                  <i className="fa-solid fa-lock absolute left-5 top-1/2 -translate-y-1/2 text-zinc-600"></i>
                   <input 
                     type="password" 
                     required 
-                    className="w-full pl-12 pr-4 py-3.5 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-violet-500 outline-none transition-all"
+                    className="w-full pl-14 pr-6 py-4 bg-zinc-950 border border-zinc-800 rounded-2xl text-white focus:ring-2 focus:ring-violet-500 outline-none transition-all placeholder:text-zinc-800 shadow-inner"
                     placeholder="••••••••"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
@@ -110,43 +111,47 @@ const Login: React.FC<LoginProps> = ({ onSuccess }) => {
               <button 
                 type="submit" 
                 disabled={isLoading}
-                className="w-full py-4 bg-violet-600 text-white rounded-2xl font-bold hover:bg-violet-700 transition-all shadow-lg shadow-violet-500/20 active:scale-[0.98] disabled:opacity-50 flex items-center justify-center gap-3"
+                className="w-full py-5 bg-violet-600 text-white rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-violet-700 transition-all shadow-xl shadow-violet-500/20 active:scale-[0.98] disabled:opacity-50 flex items-center justify-center gap-3"
               >
                 {isLoading ? (
                   <i className="fa-solid fa-circle-notch animate-spin"></i>
                 ) : (
-                  <>{isLogin ? 'Entrar Agora' : 'Criar minha Aura'}</>
+                  <>{isLogin ? 'ATIVAR ACESSO' : 'GERAR MINHA AURA'}</>
                 )}
               </button>
             </form>
 
-            <div className="mt-8 text-center">
-              <div className="relative mb-6">
+            <div className="mt-12 text-center">
+              <div className="relative mb-8">
                 <div className="absolute inset-0 flex items-center" aria-hidden="true">
-                  <div className="w-full border-t border-gray-100"></div>
+                  <div className="w-full border-t border-zinc-800"></div>
                 </div>
-                <div className="relative flex justify-center text-xs uppercase">
-                  <span className="px-2 bg-white text-gray-400 font-bold tracking-widest">Acesso Social</span>
+                <div className="relative flex justify-center text-[10px] font-black uppercase tracking-[0.2em]">
+                  <span className="px-4 bg-zinc-900 text-zinc-600">Conectar com</span>
                 </div>
               </div>
 
-              <div className="grid grid-cols-3 gap-3">
-                <button className="flex flex-col items-center justify-center gap-2 py-3 border border-gray-200 rounded-xl hover:bg-gray-50 transition-all font-bold text-[10px] uppercase tracking-tighter hover:border-violet-200">
-                  <i className="fa-brands fa-google text-xl text-red-500"></i>
-                  Google
+              <div className="grid grid-cols-3 gap-4">
+                <button className="flex flex-col items-center justify-center gap-3 py-4 bg-zinc-950 border border-zinc-800 rounded-2xl hover:bg-zinc-800 transition-all group">
+                  <i className="fa-brands fa-google text-xl text-zinc-500 group-hover:text-red-500 transition-colors"></i>
+                  <span className="text-[8px] font-black uppercase text-zinc-600 tracking-widest">Google</span>
                 </button>
-                <button className="flex flex-col items-center justify-center gap-2 py-3 border border-gray-200 rounded-xl hover:bg-gray-50 transition-all font-bold text-[10px] uppercase tracking-tighter hover:border-slate-400">
-                  <i className="fa-brands fa-apple text-xl text-slate-900"></i>
-                  iCloud
+                <button className="flex flex-col items-center justify-center gap-3 py-4 bg-zinc-950 border border-zinc-800 rounded-2xl hover:bg-zinc-800 transition-all group">
+                  <i className="fa-brands fa-apple text-xl text-zinc-500 group-hover:text-white transition-colors"></i>
+                  <span className="text-[8px] font-black uppercase text-zinc-600 tracking-widest">iCloud</span>
                 </button>
-                <button className="flex flex-col items-center justify-center gap-2 py-3 border border-gray-200 rounded-xl hover:bg-gray-50 transition-all font-bold text-[10px] uppercase tracking-tighter hover:border-blue-400">
-                  <i className="fa-brands fa-facebook text-xl text-blue-600"></i>
-                  Facebook
+                <button className="flex flex-col items-center justify-center gap-3 py-4 bg-zinc-950 border border-zinc-800 rounded-2xl hover:bg-zinc-800 transition-all group">
+                  <i className="fa-brands fa-facebook text-xl text-zinc-500 group-hover:text-blue-500 transition-colors"></i>
+                  <span className="text-[8px] font-black uppercase text-zinc-600 tracking-widest">Facebook</span>
                 </button>
               </div>
             </div>
           </div>
         </div>
+        
+        <p className="mt-10 text-center text-zinc-700 text-[10px] font-bold uppercase tracking-widest">
+          Orgulhosamente feito para o povo Angolano.
+        </p>
       </div>
     </div>
   );

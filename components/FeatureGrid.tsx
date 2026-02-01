@@ -4,25 +4,28 @@ import { FEATURES } from '../constants';
 
 const FeatureGrid: React.FC = () => {
   return (
-    <div className="py-24 bg-gray-50">
+    <div className="py-24 bg-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Poder Único da AuraVoz</h2>
-          <p className="mt-4 text-lg text-gray-600">A tecnologia de voz mais sofisticada ao seu serviço.</p>
+        <div className="text-center mb-20">
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Poder Único da AuraVoz</h2>
+          <p className="text-lg text-zinc-400">Sinta a emoção em cada sílaba gerada pela nossa inteligência.</p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {FEATURES.map((feature) => (
-            <div key={feature.id} className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow relative overflow-hidden group">
+            <div key={feature.id} className="bg-zinc-900/50 p-8 rounded-[2rem] border border-zinc-800 hover:border-violet-500/40 transition-all relative overflow-hidden group hover:bg-zinc-900">
               {feature.tag && (
-                <div className="absolute top-0 right-0 bg-violet-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg uppercase">
+                <div className="absolute top-0 right-0 bg-violet-600 text-white text-[10px] font-bold px-4 py-1.5 rounded-bl-2xl uppercase tracking-widest">
                   {feature.tag}
                 </div>
               )}
-              <div className="w-12 h-12 bg-violet-50 text-violet-600 rounded-xl flex items-center justify-center mb-6 group-hover:bg-violet-600 group-hover:text-white transition-colors">
-                <i className={`fa-solid ${feature.icon} text-xl`}></i>
+              <div className="w-14 h-14 bg-zinc-800 text-violet-400 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-violet-600 group-hover:text-white transition-all duration-500 group-hover:rotate-6">
+                <i className={`fa-solid ${feature.icon} text-2xl`}></i>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">{feature.title}</h3>
-              <p className="text-gray-600 leading-relaxed">{feature.description}</p>
+              <h3 className="text-xl font-bold text-white mb-4 group-hover:text-violet-400 transition-colors">{feature.title}</h3>
+              <p className="text-zinc-400 leading-relaxed text-sm">{feature.description}</p>
+              
+              {/* Subtle hover accent */}
+              <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-violet-600 to-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
             </div>
           ))}
         </div>
