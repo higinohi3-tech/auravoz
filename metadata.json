@@ -1,0 +1,8 @@
+{
+  "name": "AuraVoz - Excelência em Voz Artificial",
+  "description": "Uma plataforma avançada de serviços de voz por IA, com suporte para línguas africanas, clonagem de voz e emoções controláveis.",
+  "requestFramePermissions": [
+    "microphone",
+    "camera"
+  ]
+}
